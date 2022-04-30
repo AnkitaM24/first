@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from mirai.models import Company,Employee
-from mirai.forms import CompanyForm,EmployeeForm
+from .models import Company,Employee
+from .forms import CompanyForm,EmployeeForm
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
 
@@ -80,7 +80,7 @@ def emp(request):
         form = EmployeeForm(request.POST)
         if form.is_valid():
             try:
-                
+
                 form.save()
                 return redirect("/showemp")
             except:
@@ -111,9 +111,7 @@ def updateEmp(request, eFname):
     form = EmployeeForm(request.POST, instance= employee)
     print('Hello1')
     if form.is_valid():
-        
+
         form.save()
         return redirect("/showemp")
     return render(request, "editemployee.html", {'employee': employee})
-
-
